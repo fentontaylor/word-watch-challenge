@@ -10,4 +10,16 @@ $(document).ready(() => {
       $('.word-count').html(`${top_word}: ${count}`)
     }
   });
+
+  $("button").click(() => {
+    let text = document.getElementsByTagName('textarea')[0].value
+    let words = text.split(' ')
+    words.forEach(w => {
+      $.ajax({
+        url: "https://wordwatch-api.herokuapp.com/api/v1/words",
+        type: 'POST',
+        data: { word: { value: w } }
+      });
+    })
+  });
 })
